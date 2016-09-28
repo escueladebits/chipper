@@ -14,6 +14,9 @@ Crafty.defineScene('mainScene', function() {
     .attr({x: 30, y: 131, size: 5}); 
   Crafty.e('2D, Canvas, Table')
     .attr({x: 5, y: 169, size: 6});
+
+  Crafty.e('2D, Canvas, Hitbox')
+    .attr({x: 70, y: 182, number: 2});
 });
 
 Crafty.enterScene('mainScene');
