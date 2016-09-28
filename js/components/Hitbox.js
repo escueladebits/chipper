@@ -21,23 +21,20 @@ Crafty.load(assets);
 Crafty.c('Hitbox', {
   _number: 0,
   events: {
-    'MouseDown': function(mouseEvent) {
-      this._base.removeComponent('hitbox').addComponent('hitbox_hl');
-    },
-    'MouseUp': function(mouseEvent) {
-      this._base.removeComponent('hitbox_hl').addComponent('hitbox');
-    },
     'Change': function(data) {
       if (this._number !== data.number) {
         this._setNumber(data.number);
       }
       this._base.attr({x: data.x, y: data.y});
       this._number_sprite.attr({x: data.x, y: data.y});
-    }
+    },
   },
-  required: "Mouse",
   init: function() {
-    this._base = Crafty.e('2D, Canvas, hitbox');
+    this._base = Crafty.e('2D, Canvas, Mouse, hitbox')
+      .bind('MouseDown', function(mouseEvent) {
+        this.removeComponent('hitbox').addComponent('hitbox_hl');})
+      .bind('MouseUp', function(mouseEvent) {
+        this.removeComponent('hitbox_hl').addComponent('hitbox');});
     this._number_sprite = Crafty.e('2D, Canvas, n0');
   },
   _setNumber: function(n) {
