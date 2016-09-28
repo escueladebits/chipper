@@ -15,8 +15,10 @@ Crafty.defineScene('mainScene', function() {
   Crafty.e('2D, Canvas, Table')
     .attr({x: 5, y: 169, size: 6});
 
-  Crafty.e('2D, Canvas, Hitbox')
-    .attr({x: 70, y: 182, number: 2});
+  for (var i = 0; i < 10; i++) {
+    Crafty.e('2D, Canvas, Hitbox')
+      .attr({x: 70 + i * 18, y: 182, number: i});
+  }
 });
 
 Crafty.enterScene('mainScene');
