@@ -37,10 +37,8 @@ Crafty.c('Hitbox', {
   },
   required: "Mouse",
   init: function() {
-    console.log('hitbox!');
     this._base = Crafty.e('2D, Canvas, hitbox');
     this._number_sprite = Crafty.e('2D, Canvas, n0');
-    console.log(this._base, this._number_sprite);
   },
   _setNumber: function(n) {
     this._number_sprite.removeComponent('n' + this._number);
