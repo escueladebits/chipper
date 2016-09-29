@@ -30,7 +30,7 @@ Crafty.c('Hitbox', {
      },
     'Change': function(data) {
       if (this._number !== data.number) {
-        this._number_sprite.removeComponent('n' + this._number).addComponent('n' + data.number);
+        this._children[0].removeComponent('n' + this._number).addComponent('n' + data.number);
       }
       this._number = data.number;
       this.x = data.x;
@@ -38,7 +38,6 @@ Crafty.c('Hitbox', {
     },
   },
   init: function() {
-    this._number_sprite = Crafty.e('2D, Canvas, n0');
-    this.attach(this._number_sprite);
+    this.attach(Crafty.e('2D, Canvas, n0'));
   },
 });
