@@ -20,13 +20,23 @@ Crafty.load(assets);
 
 Crafty.c('Hitbox', {
   _number: 0,
-  required: '2D, Canvas, Mouse, hitbox',
+  required: '2D, Canvas, Mouse, Keyboard, hitbox',
   events: {
+      'KeyDown': function(keyboardEvent) {
+        if (keyboardEvent.key - Crafty.keys[0] === this._number || keyboardEvent.key - Crafty.keys.NUMPAD_0 === this._number) {
+         this._shadow();
+       }
+      },
+      'KeyUp': function(keyboardEvent) {
+        if (keyboardEvent.key - Crafty.keys[0] === this._number || keyboardEvent.key - Crafty.keys.NUMPAD_0 === this._number) {
+         this._light();
+       }
+      },
       'MouseDown': function(mouseEvent) {
-        this.removeComponent('hitbox').addComponent('hitbox_hl');
+        this._shadow();
       },
       'MouseUp': function(mouseEvent) {
-        this.removeComponent('hitbox_hl').addComponent('hitbox');
+        this._light();
      },
     'Change': function(data) {
       if (this._number !== data.number) {
@@ -39,5 +49,11 @@ Crafty.c('Hitbox', {
   },
   init: function() {
     this.attach(Crafty.e('2D, Canvas, n0'));
+  },
+  _shadow: function() {
+    this.removeComponent('hitbox').addComponent('hitbox_hl');
+  },
+  _light: function() {
+    this.removeComponent('hitbox_hl').addComponent('hitbox');
   },
 });
